@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/test", (req: Request, res: Response) => {
-  return res.json({ message: "route test" });
+  throw new Error("banana");
 });
 
 export { router };
