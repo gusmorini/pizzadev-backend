@@ -3,7 +3,7 @@ import { ListProductbyCategoryService } from "../../services/product/ListProduct
 
 class ListProductbyCategoryController {
   async handle(req: Request, res: Response) {
-    const category_id = req.query.category_id as string;
+    const category_id = req.params.category_id as string;
     const service = new ListProductbyCategoryService();
     const list = await service.execute({ category_id });
     return res.json(list);

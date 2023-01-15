@@ -45,7 +45,7 @@ router.post(
 );
 
 router.get(
-  "/product/category",
+  "/product/:category_id",
   isAuthenticated,
   new ListProductbyCategoryController().handle
 );
