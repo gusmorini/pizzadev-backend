@@ -19,6 +19,7 @@ import { DeleteOrderController } from "./controllers/order/DeleteOrderController
 import { ListOrderController } from "./controllers/order/ListOrderController";
 
 import { CreateItemController } from "./controllers/item/CreateItemController";
+import { DeleteItemController } from "./controllers/item/DeleteItemController";
 
 const router = Router();
 
@@ -64,5 +65,10 @@ router.delete(
 
 // --- ITEM ROUTES
 router.post("/item", isAuthenticated, new CreateItemController().handle);
+router.delete(
+  "/item/:item_id",
+  isAuthenticated,
+  new DeleteItemController().handle
+);
 
 export { router };
