@@ -10,6 +10,7 @@ import { CreateCategoryController } from "./controllers/category/CreateCategoryC
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
 import { CreateProductController } from "./controllers/product/CreateProductController";
+import { ListProductbyCategoryController } from "./controllers/product/ListProductbyCategoryController";
 
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
@@ -38,6 +39,12 @@ router.post(
   isAuthenticated,
   upload.single("file"),
   new CreateProductController().handle
+);
+
+router.get(
+  "/product/category",
+  isAuthenticated,
+  new ListProductbyCategoryController().handle
 );
 
 export { router };
