@@ -18,6 +18,8 @@ import { CreateOrderController } from "./controllers/order/CreateOrderController
 import { DeleteOrderController } from "./controllers/order/DeleteOrderController";
 import { ListOrderController } from "./controllers/order/ListOrderController";
 
+import { CreateItemController } from "./controllers/item/CreateItemController";
+
 const router = Router();
 
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -59,5 +61,8 @@ router.delete(
   isAuthenticated,
   new DeleteOrderController().handle
 );
+
+// --- ITEM ROUTES
+router.post("/item", isAuthenticated, new CreateItemController().handle);
 
 export { router };
