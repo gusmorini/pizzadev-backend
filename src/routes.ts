@@ -2,6 +2,8 @@ import { Router, Request, Response } from "express";
 import multer from "multer";
 import uploadConfig from "./config/multer";
 
+import { isAuthenticated } from "./middlewares/isAuthenticated";
+
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
@@ -14,8 +16,7 @@ import { ListProductbyCategoryController } from "./controllers/product/ListProdu
 
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { DeleteOrderController } from "./controllers/order/DeleteOrderController";
-
-import { isAuthenticated } from "./middlewares/isAuthenticated";
+import { ListOrderController } from "./controllers/order/ListOrderController";
 
 const router = Router();
 
@@ -52,6 +53,7 @@ router.get(
 
 // --- ORDER ROUTES
 router.post("/order", isAuthenticated, new CreateOrderController().handle);
+router.get("/order", isAuthenticated, new ListOrderController().handle);
 router.delete(
   "/order/:order_id",
   isAuthenticated,
