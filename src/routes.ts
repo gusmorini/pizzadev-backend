@@ -19,6 +19,7 @@ import { DeleteOrderController } from "./controllers/order/DeleteOrderController
 import { ListOrderController } from "./controllers/order/ListOrderController";
 import { DetailOrderController } from "./controllers/order/DetailsOrderController";
 import { SendOrderController } from "./controllers/order/SendOrderController";
+import { FinishOrderController } from "./controllers/order/FinishOrderController";
 
 import { CreateItemController } from "./controllers/item/CreateItemController";
 import { DeleteItemController } from "./controllers/item/DeleteItemController";
@@ -70,6 +71,11 @@ router.delete(
   new DeleteOrderController().handle
 );
 router.patch("/order/send", isAuthenticated, new SendOrderController().handle);
+router.patch(
+  "/order/finish",
+  isAuthenticated,
+  new FinishOrderController().handle
+);
 
 // --- ITEM ROUTES
 router.post("/item", isAuthenticated, new CreateItemController().handle);
