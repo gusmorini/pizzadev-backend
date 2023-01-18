@@ -6,17 +6,16 @@ interface OrderRequest {
 
 export class DetailsOrderService {
   async execute({ order_id }: OrderRequest) {
-    const order = await prismaClient.order.findFirst({
-      where: { id: order_id },
-      select: {
-        id: true,
-        table: true,
-        name: true,
-        draft: true,
-        status: true,
-        items: true,
+    const order = await prismaClient.item.findMany({
+      where: {
+        order_id: order_id,
+      },
+      include: {
+        product: true,
+        order: true,
       },
     });
+
     return order;
   }
 }
